@@ -32,16 +32,16 @@ It is recommended that each service runs its MongoDB instance on the production 
 You can start different containers of the same image on the production server or on localhost to achieve this.
 
 ```bash
-$ docker run -d -p 27017:27017 --name mongodb-resource mongo:5.0.6
+$ docker run -d -p 27017:27017 --name mongodb-resource mongo:6.0.4
 54b0c78a016d36b2eca2dfa42a8eeabd1a2596bb6acd2721d21bd57cbc6fc381
 
-$ docker run -d -p 27018:27017 --name mongodb-auth mongo:5.0.6
+$ docker run -d -p 27018:27017 --name mongodb-auth mongo:6.0.4
 15ce7744f18deedcfdac35839e3f8b184f2e6c83222e79b5ea89ac561dfbb885
 
 $ docker ps
 CONTAINER ID   IMAGE         COMMAND                  CREATED         STATUS             PORTS                      NAMES
-15ce7744f18d   mongo:5.0.6   "docker-entrypoint.s…"   8 seconds ago   Up 6 seconds       0.0.0.0:27018->27017/tcp   mongodb-auth
-54b0c78a016d   mongo:5.0.6   "docker-entrypoint.s…"   6 weeks ago     Up About an hour   0.0.0.0:27017->27017/tcp   mongodb-resource
+15ce7744f18d   mongo:6.0.4   "docker-entrypoint.s…"   8 seconds ago   Up 6 seconds       0.0.0.0:27018->27017/tcp   mongodb-auth
+54b0c78a016d   mongo:6.0.4   "docker-entrypoint.s…"   6 weeks ago     Up About an hour   0.0.0.0:27017->27017/tcp   mongodb-resource
 ```
 
 Now you can let the auth service connect to port 27018.
