@@ -14,9 +14,28 @@ const schema = new mongoose.Schema({
   password: {
     type: String,
     minlength: [8, 'Password must be at least 8 characters long.'],
-    maxlength: [2000, 'Password must be at most 2000 characters long.'],
+    maxlength: [200, 'Password must be at most 200 characters long.'],
+    required: true
+  },
+  firstName: {
+    type: String,
+    minlength: [2, 'First name must be at least 2 characters long.'],
+    maxlength: [20, 'First name must be at most 20 characters long.'],
+    required: true
+  },
+  lastName: {
+    type: String,
+    minlength: [2, 'First name must be at least 2 characters long.'],
+    maxlength: [20, 'First name must be at most 20 characters long.'],
+    required: true
+  },
+  email: {
+    type: String,
+    minlength: [5, 'Email must be at least 5 characters long.'],
+    maxlength: [35, 'Email must be at most 35 characters long.'],
     required: true
   }
+
 }, {
   timestamps: true,
   versionKey: false
