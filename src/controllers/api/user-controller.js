@@ -34,7 +34,6 @@ export class UserController {
         .json({ id: user._id })
     } catch (error) {
       let e = error
-      console.log(error.name);
       if (e.code === 11000) {
         e = createError(409, 'Username or email already exists.')
         e.cause = error
@@ -46,6 +45,13 @@ export class UserController {
     }
   }
 
+  /**
+   * Handles the login of a user. Deals with the JWT.
+   *
+   * @param {object} req - The request object.
+   * @param {object} res - The response object.
+   * @param {Function} next - The next middleware function.
+   */
   async login (req, res, next) {
     try {
       const user = await User.isCorrectPassword(req.body.username, req.body.password)
@@ -58,9 +64,9 @@ export class UserController {
         x_permission_level: user.permissionLevel
       }
 
-      const accessToken = jwt.sign(payload, 'supersecret', {
+      const accessToken = jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, {
         algorithm: 'HS256',
-        expiresIn: '300s'
+        expiresIn: process.env.ACCESS_TOKEN_LIFE
       })
 
       res
@@ -75,10 +81,17 @@ export class UserController {
     }
   }
 
+  /**
+   * Handles the refresh of a JWT token.
+   *
+   * @param {object} req - The request object.
+   * @param {object} res - The response object.
+   * @param {Function} next - The next middleware function.
+   */
+  // TODO: Fix refresh.
   async refresh (req, res, next) {
     try {
       const [authorizationType, token] = req.headers.authorization?.split(' ')
-      console.log(authorizationType, token);
       if (authorizationType !== 'Bearer') {
         throw new Error('Invalid authorization type.')
       } else if (!token) {
@@ -91,7 +104,6 @@ export class UserController {
         }
         return decoded
       })
-      console.log(payload);
       delete payload.exp
       const newToken = jwt.sign(payload, 'supersecret', {
         algorithm: 'HS256',

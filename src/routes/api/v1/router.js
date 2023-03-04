@@ -13,4 +13,5 @@ export const router = express.Router()
 
 router.post('/register', (req, res, next) => controller.register(req, res, next))
 router.post('/login', (req, res, next) => controller.login(req, res, next))
-router.post('/refresh', (req, res, next) => controller.refresh(req, res, next))
+// TODO: Fix refresh.
+// router.post('/refresh', (req, res, next) => controller.refresh(req, res, next))
