@@ -1,0 +1,16 @@
+{
+  "name": "auth-service",
+  "version": "1.0.0",
+  "description": "The auth service is responsible for handling accounts and handing out JWTs upon successful authentication.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@gitlab.lnu.se:1dv026/student/hn222te/assignment-b3-picture-it/auth-service.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
