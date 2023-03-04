@@ -1,5 +1,6 @@
 import bcrypt from 'bcrypt'
 import mongoose from 'mongoose'
+import validator from 'validator'
 
 /**
  * User model.
@@ -58,6 +59,11 @@ schema.statics.isCorrectPassword = async function (username, password) {
 }
 
 schema.pre('save', async function () {
+  if (!validator.isEmail(this.email)) {
+    const error = new Error('Invalid email.')
+    error.status = 400
+    throw error
+  }
   this.password = await bcrypt.hash(this.password, 10)
 })
 
