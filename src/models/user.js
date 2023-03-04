@@ -33,9 +33,9 @@ const schema = new mongoose.Schema({
     type: String,
     minlength: [5, 'Email must be at least 5 characters long.'],
     maxlength: [35, 'Email must be at most 35 characters long.'],
+    unique: true,
     required: true
   }
-
 }, {
   timestamps: true,
   versionKey: false

@@ -25,7 +25,14 @@
     "morgan": "^1.10.0"
   },
   "devDependencies": {
+    "@lnu/eslint-config": "^1.1.7",
     "dotenv": "^16.0.3",
+    "eslint": "^8.25.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsdoc": "^39.3.14",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^6.1.1",
     "nodemon": "^2.0.21"
   }
 }
